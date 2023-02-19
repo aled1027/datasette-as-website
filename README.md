@@ -1,9 +1,14 @@
 # datasette-as-website
 
 ```bash
-sqlite-utils insert posts.db posts posts.csv --csv
+# Build the database
+/build.sh
 
-datasette serve posts.db --metadata metadata.json
+# Run locally
+./run.sh
+
+# Deploy to fly
+./deploy.sh
 ```
 
 ## Resources

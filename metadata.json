@@ -1,9 +1,14 @@
 {
+    "title": "My Site",
+    "description": "Somewhat-static Generated Site",
     "plugins": {
         "datasette-render-markdown": {
             "columns": [
                 "body"
             ]
         }
-    }
+    },
+    "extra_js_urls": [
+        "https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+    ]
 }

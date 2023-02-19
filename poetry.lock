@@ -133,6 +133,20 @@ rich = ["rich"]
 test = ["pytest (>=5.2.2)", "pytest-xdist (>=2.2.1)", "pytest-asyncio (>=0.17)", "beautifulsoup4 (>=4.8.1)", "black (==22.10.0)", "blacken-docs (==1.12.1)", "pytest-timeout (>=1.4.2)", "trustme (>=0.7)", "cogapp (>=3.3.0)"]
 
 [[package]]
+name = "datasette-publish-fly"
+version = "1.3"
+description = "Datasette plugin for publishing data using Fly"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+datasette = ">=0.60.2"
+
+[package.extras]
+test = ["pytest", "pytest-mock", "cogapp"]
+
+[[package]]
 name = "datasette-render-markdown"
 version = "2.1.1"
 description = "Datasette plugin for rendering Markdown"
@@ -147,6 +161,20 @@ markdown = "*"
 
 [package.extras]
 test = ["pytest", "pytest-asyncio"]
+
+[[package]]
+name = "datasette-template-sql"
+version = "1.0.2"
+description = "Datasette plugin for executing SQL queries from templates"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+datasette = ">=0.54"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio", "sqlite-utils"]
 
 [[package]]
 name = "h11"
@@ -440,7 +468,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "75a0df53387e06e4c881668717c21c2113ae8efcf055949c99710e7219f95b2e"
+content-hash = "6ca0ce99cabe42b36804c297f86d56d9d14c791afc9278fcb64b1864d5bff00a"
 
 [metadata.files]
 aiofiles = [
@@ -483,9 +511,17 @@ datasette = [
     {file = "datasette-0.64.1-py3-none-any.whl", hash = "sha256:7253c244ab35b537b2aa5ac239d24fd101af4a46caef11ee06a727b1db4e64ca"},
     {file = "datasette-0.64.1.tar.gz", hash = "sha256:ca30c37e515400b3ba1b07dfe51093238e33baca75ccf3d163645cf5b3c80fd5"},
 ]
+datasette-publish-fly = [
+    {file = "datasette-publish-fly-1.3.tar.gz", hash = "sha256:ca11b97cbb3849f755577b124337d6eaf387da0f00b06e1854fdb4212250ecbf"},
+    {file = "datasette_publish_fly-1.3-py3-none-any.whl", hash = "sha256:016760349e0c1bda17abb88b73118b888491c4dff6b64bdfa1d5795e1fde9fb0"},
+]
 datasette-render-markdown = [
     {file = "datasette-render-markdown-2.1.1.tar.gz", hash = "sha256:5487d57080e0bb0db40a7048c2f41d86cedb05e4fb669fcb9ac6e20051361675"},
     {file = "datasette_render_markdown-2.1.1-py3-none-any.whl", hash = "sha256:fbadcf30190fac66d6bfe239f12c25abe358b5b8a0f625b3673c23c3e822d4f4"},
+]
+datasette-template-sql = [
+    {file = "datasette-template-sql-1.0.2.tar.gz", hash = "sha256:664c795c319e820be635803198b505dc01621324a8b4627b269e4c174563e8c3"},
+    {file = "datasette_template_sql-1.0.2-py3-none-any.whl", hash = "sha256:194514201e8ce3489040e89a7887d8144bf27fd32580649a904be31de2cd0752"},
 ]
 h11 = [
     {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
