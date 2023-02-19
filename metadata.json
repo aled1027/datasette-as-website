@@ -1,0 +1,9 @@
+{
+    "plugins": {
+        "datasette-render-markdown": {
+            "columns": [
+                "body"
+            ]
+        }
+    }
+}
