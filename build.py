@@ -12,10 +12,14 @@ posts: list[dict[str, Any]] = []
 for i, filename in enumerate(filenames):
     with open(filename) as fh:
         contents = fh.read()
-    # print(contents)
+
+    # Escape tick marks ` because they're use in the javascript rendering
+    contents = contents.replace("`", "\\`")
+    print(contents)
 
     # Naively grab the the title of the post
     title = contents.split("\n")[0].replace("# ", "").strip()
+
     
     post = {
         "id": i,

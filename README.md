@@ -11,6 +11,10 @@
 ./deploy.sh
 ```
 
+## Thoughts
+
+- Need to check how images should be handled when we get there, but should be fine
+
 ## Resources
 
 ### How-tos
