@@ -1,3 +1,3 @@
 datasette serve site.db \
- --metadata metadata.json \
+ --metadata metadata.yaml \
  --template-dir templates
