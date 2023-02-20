@@ -2,7 +2,9 @@
 Deletes posts.db:db table and then recreates it from the files in the posts directory.
 """
 
+from sqlite_utils.utils import TypeTracker
 from typing import Any
+import yaml
 import glob
 from sqlite_utils import Database
 import click
@@ -11,8 +13,32 @@ from bs4 import BeautifulSoup
 from datasette_render_markdown import render_markdown
 
 
-def markdown_to_html(markdown_body: str) -> str:
+def drop_metadata_section(markdown_body: str) -> str:
+    metadata_marker = "---"
+    if not markdown_body.startswith(metadata_marker):
+        return markdown_body
 
+    end_idx = markdown_body.find(metadata_marker, len(metadata_marker))
+    return markdown_body[end_idx:]
+
+
+def parse_metadata(markdown_body: str) -> dict[str, Any]:
+    metadata_marker = "---"
+    if not markdown_body.startswith(metadata_marker):
+        return {}
+
+    start_idx = len(metadata_marker)
+    end_idx = markdown_body.find(metadata_marker, len(metadata_marker))
+
+    if end_idx < 0:
+        raise ValueError("Unable to find end of metadata section")
+
+    metadata_section = markdown_body[start_idx:end_idx]
+    metadata = yaml.safe_load(metadata_section)
+    return dict(metadata)
+
+
+def markdown_to_html(markdown_body: str) -> str:
     """
     Converts a string of markdown to an HTML string. The implementation
     calls render_markdown from datasette-render-markdown 
@@ -29,6 +55,8 @@ def markdown_to_html(markdown_body: str) -> str:
     extra_tags = ["hr", "br", "details", "summary", "input"]
     extra_attrs = {"input": ["type", "disabled", "checked"]}
 
+    markdown_body = drop_metadata_section(markdown_body)
+
     return str(render_markdown(markdown_body, extensions, extra_tags, extra_attrs))
 
 
@@ -40,20 +68,29 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
         with open(filename) as fh:
             contents = fh.read()
 
+        metadata = parse_metadata(contents)
+
         html_body = markdown_to_html(contents)
 
-        # Find the title of the post by searching for the first h1 tag
-        soup = BeautifulSoup(html_body, "html.parser")
-        title_tag = soup.find("h1")
-        if not title_tag:
-            raise ValueError("Unable to find title")
-        title = title_tag.text
+        if "title" not in metadata:
+            # If the title isn't provided in the medata, find it in the
+            # html by searching for the first h1 tag
+            soup = BeautifulSoup(html_body, "html.parser")
+            title_tag = soup.find("h1")
+            if not title_tag:
+                raise ValueError("Unable to find title")
+            metadata["title"] = title_tag.text
+        
+        title = metadata["title"]
+        tags = metadata.get("tags", [])
 
         post = {
             "id": i,
             "title": title,
             "body": contents,
             "html_body": html_body,
+            "metadata": metadata,
+            "tags": tags,
         }
 
         posts.append(post)
@@ -61,7 +98,9 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
 
     db = Database(database)
     db[table].drop(ignore=True)
-    db[table].insert_all(posts, pk="id")
+
+    tracker = TypeTracker()
+    db[table].insert_all(tracker.wrap(posts), pk="id")
 
 
 @click.command()
