@@ -1,0 +1,61 @@
+
+/*
+This file themes the site by overriding the css in app.css, which can be found here:
+https://github.com/simonw/datasette/blob/main/datasette/static/app.css
+*/
+:root {
+    --black: rgb(25 26 34);
+    --black-alt: rgb(25 26 34);
+    --white: rgb(238 238 245);
+    --primary: rgb(132 143 247);
+    --on-surface: rgb(181 188 206);
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+
+header {
+    background-color: var(--black);
+    color: var(--on-surface);
+    font-family: 'Inter', sans-serif;
+    border-bottom: 1px dashed var(--on-surface);
+}
+
+body {
+    /* : 10px; */
+    background-color: var(--black);
+    color: var(--on-surface);
+    font-family: 'Inter', sans-serif;
+}
+
+ol, ul {
+    list-style: disc;
+    margin-left: 16px;
+}
+
+pre {
+    border: .01em solid var(--on-surface);
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--white);
+}
+
+a:visited {
+    color: var(--white);
+}
+
+a:link {
+    color: var(--primary);
+}

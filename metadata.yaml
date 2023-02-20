@@ -6,3 +6,6 @@ plugins:
       - body
 extra_js_urls:
   - https://cdn.jsdelivr.net/npm/marked/marked.min.js
+extra_css_urls:
+  - https://rsms.me/inter/inter.css
+  - /assets/theme.css

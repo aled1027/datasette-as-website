@@ -22,7 +22,7 @@ def load_json_file(filename: str) -> dict:
 
 class MyClass:
     def __init__(self, obj_id: str) -> None:
-        # The obj_id could alternativel be generatd here, instead of passed,
+        # The obj_id could alternative be generatd here, instead of passed,
         # with uuid4
         self.obj_id = obj_id
 

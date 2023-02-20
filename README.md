@@ -14,6 +14,12 @@
 ## Thoughts
 
 - Need to check how images should be handled when we get there, but should be fine
+- Search (with snippets?)
+  - https://discord.com/channels/823971286308356157/823971286941302908/1024279424788598904
+  - https://github.com/simonw/til/blob/dface4ffa0e284d933cab35cc45edf097d9d3fce/metadata.yaml#L21-L35
+  -
+- Theming
+  - https://blog.logrocket.com/a-guide-to-theming-in-css/
 
 ## Resources
 
