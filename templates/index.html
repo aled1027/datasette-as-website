@@ -7,13 +7,19 @@ https://github.com/simonw/museums/blob/main/templates/index.html
 
 {% block content %}
 <h1>{{ metadata.title or "Datasette" }}{% if private %} 🔒{% endif %}</h1>
+<h2>Posts</h2>
 
 <ul>
     {% for row in sql("select * from posts") %}
     <li>
-        <a href="/posts/posts/{{ row.id }}">{{ row.title }} </a>
+        <a href="/site/posts/{{ row.id }}">{{ row.title }} </a>
     </li>
     {% endfor %}
 </ul>
+
+<!-- Separation line from usual datasette page -->
+<br />​<hr />​​​​​​​​​​​​​​​​​​​<br />
+
+{{ super() }}
 
 {% endblock %}

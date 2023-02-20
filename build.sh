@@ -1,1 +1,1 @@
-poetry run python build.py
+poetry run python build.py posts site.db posts

@@ -468,7 +468,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6ca0ce99cabe42b36804c297f86d56d9d14c791afc9278fcb64b1864d5bff00a"
+content-hash = "0b7b1506568a594f9e50d198a227ff7c50e92351bc2bf0518e3f901988e04012"
 
 [metadata.files]
 aiofiles = [
