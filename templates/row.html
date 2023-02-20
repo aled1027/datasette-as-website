@@ -12,6 +12,9 @@
 
 {{ row["html_body"]|safe }}
 
+<!-- render markdown directly isn't handling the code blocks well -->
+<!-- {{ render_markdown(row["body"]) }} -->
+
 {% endfor %}
 
 <!-- {{ super() }} -->

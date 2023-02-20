@@ -19,7 +19,7 @@ def drop_metadata_section(markdown_body: str) -> str:
         return markdown_body
 
     end_idx = markdown_body.find(metadata_marker, len(metadata_marker))
-    return markdown_body[end_idx:]
+    return markdown_body[end_idx + len(metadata_marker):]
 
 
 def parse_metadata(markdown_body: str) -> dict[str, Any]:
@@ -69,7 +69,7 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
             contents = fh.read()
 
         metadata = parse_metadata(contents)
-
+        body = drop_metadata_section(contents)
         html_body = markdown_to_html(contents)
 
         if "title" not in metadata:
@@ -87,7 +87,8 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
         post = {
             "id": i,
             "title": title,
-            "body": contents,
+            "raw": contents,
+            "body": body,
             "html_body": html_body,
             "metadata": metadata,
             "tags": tags,

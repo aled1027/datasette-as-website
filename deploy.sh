@@ -3,4 +3,4 @@ poetry run datasette publish fly site.db \
     --metadata metadata.yaml \
     --template-dir templates \
     --static assets:static-files \
-    --install "datasette-render-markdown datasette-template-sql"
+    --install "py-gfm datasette-render-markdown datasette-template-sql"

@@ -3,7 +3,7 @@ This file themes the site by overriding the css in app.css, which can be found h
 https://github.com/simonw/datasette/blob/main/datasette/static/app.css
 */
 
-
+/*  */
 :root {
     /* light theme */
     --bg-color: rgb(25 26 34);
@@ -25,16 +25,9 @@ https://github.com/simonw/datasette/blob/main/datasette/static/app.css
 }
 
 
-@supports (font-variation-settings: normal) {
-    :root {
-        font-family: 'Inter var', sans-serif;
-    }
-}
-
 header {
     background-color: var(--bg-color);
     color: var(--on-surface);
-    font-family: 'Inter', sans-serif;
     border-bottom: 1px dashed var(--on-surface);
 }
 
@@ -42,7 +35,6 @@ body {
     /* : 10px; */
     background-color: var(--bg-color);
     color: var(--on-surface);
-    font-family: 'Inter', sans-serif;
 }
 
 ol,
