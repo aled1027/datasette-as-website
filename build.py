@@ -87,7 +87,7 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
         post = {
             "id": i,
             "title": title,
-            "raw": contents,
+            "raw_contents": contents,
             "body": body,
             "html_body": html_body,
             "metadata": metadata,
