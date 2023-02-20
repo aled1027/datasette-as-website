@@ -347,6 +347,17 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
+name = "py-gfm"
+version = "2.0.0"
+description = "An implementation of Github-Flavored Markdown written as an extension to the Python Markdown library."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+markdown = ">=3.3,<4"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -491,7 +502,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c97ec91d04c0e176e20ed09b08835163b0bc90a244d84f08b20188afb61abbd1"
+content-hash = "a82c115ad3ece952f308b482573a7ab8ddcd033c0c0fcb7e86f902bb988742ff"
 
 [metadata.files]
 aiofiles = [
@@ -649,6 +660,10 @@ pint = [
 pluggy = [
     {file = "pluggy-1.0.0-py2.py3-none-any.whl", hash = "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"},
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
+]
+py-gfm = [
+    {file = "py-gfm-2.0.0.linux-x86_64.tar.gz", hash = "sha256:8768b31bbfda8e1d52e2f32b363c138eedf52b1a81c06036b60ece576b2a652f"},
+    {file = "py_gfm-2.0.0-py2.py3-none-any.whl", hash = "sha256:c49f43b584e15bdbe569141c92aefc00542289b6d88d95b38117e3359a35cdfe"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

@@ -4,6 +4,10 @@ plugins:
   datasette-render-markdown:
     columns:
       - body
+    extra_tags: ["hr", "br", "details", "summary", "input"]
+    extra_attrs:
+      input: ["type", "disabled", "checked"]
+    extensions: ["mdx_gfm:GithubFlavoredMarkdownExtension"]
 extra_js_urls:
   - https://cdn.jsdelivr.net/npm/marked/marked.min.js
 extra_css_urls:

@@ -8,6 +8,28 @@ from sqlite_utils import Database
 import click
 import markdown
 from bs4 import BeautifulSoup
+from datasette_render_markdown import render_markdown
+
+
+def markdown_to_html(markdown_body: str) -> str:
+
+    """
+    Converts a string of markdown to an HTML string. The implementation
+    calls render_markdown from datasette-render-markdown 
+    (https://github.com/simonw/datasette-render-markdown/blob/main/datasette_render_markdown/__init__.py).
+
+    Use github flavored markdown, as described at 
+    https://github.com/simonw/datasette-render-markdown#github-flavored-markdown
+    Chose to call datasette-render-markdown instead of calling the markdown
+    library's markdown.markdown because of the cleaning.
+    """
+
+    # Arguments needed for github-flavored markdown
+    extensions = ["mdx_gfm:GithubFlavoredMarkdownExtension"]
+    extra_tags = ["hr", "br", "details", "summary", "input"]
+    extra_attrs = {"input": ["type", "disabled", "checked"]}
+
+    return str(render_markdown(markdown_body, extensions, extra_tags, extra_attrs))
 
 
 def build_db_from_directory(directory: str, database: str, table: str) -> None:
@@ -18,9 +40,7 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
         with open(filename) as fh:
             contents = fh.read()
 
-        # TODO: clean up with bleach per 
-        # https://github.com/simonw/datasette-render-markdown/blob/75e13878a0c0a936bbf0848a34d5c01d18c1a654/datasette_render_markdown/__init__.py#L49
-        html_body = markdown.markdown(contents, output_format="html5")
+        html_body = markdown_to_html(contents)
 
         # Find the title of the post by searching for the first h1 tag
         soup = BeautifulSoup(html_body, "html.parser")

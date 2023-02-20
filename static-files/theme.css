@@ -4,8 +4,6 @@ https://github.com/simonw/datasette/blob/main/datasette/static/app.css
 */
 
 
-/* Light and dark theme */
-
 :root {
     /* light theme */
     --bg-color: rgb(25 26 34);
@@ -16,14 +14,14 @@ https://github.com/simonw/datasette/blob/main/datasette/static/app.css
 }
 
 @media (prefers-color-scheme: light) {
-:root {
-    /* dark theme */
-    --bg-color: rgb(255 255 255);
-    --bg-color-alt: rgb(235 235 235);
-    --text: rgb(25 26 34);
-    --primary: rgb(93, 108, 246);
-    --on-surface: rgb(49 67 78);
-}
+    :root {
+        /* dark theme */
+        --bg-color: rgb(255 255 255);
+        --bg-color-alt: rgb(235 235 235);
+        --text: rgb(25 26 34);
+        --primary: rgb(93, 108, 246);
+        --on-surface: rgb(49 67 78);
+    }
 }
 
 
@@ -77,6 +75,12 @@ a:visited {
     color: var(--text);
 }
 
-header a:link, header a:visited, header a:hover, header a:focus, header a:active, header button.button-as-link, a:link {
+header a:link,
+header a:visited,
+header a:hover,
+header a:focus,
+header a:active,
+header button.button-as-link,
+a:link {
     color: var(--primary);
 }

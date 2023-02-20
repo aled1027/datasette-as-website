@@ -7,12 +7,9 @@
 <!-- <p>Original data: {{ row }}</p> -->
 
 <div id="content"></div>
+
 {{ row["html_body"]|safe }}
-<script type="text/javascript">
-    // var content = `{{ row["body"] }}`;
-    // document.getElementById('content').innerHTML =
-        // marked.parse(content);
-</script>
+
 {% endfor %}
 
 <!-- {{ super() }} -->
