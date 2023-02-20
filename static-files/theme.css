@@ -1,21 +1,41 @@
-
 /*
 This file themes the site by overriding the css in app.css, which can be found here:
 https://github.com/simonw/datasette/blob/main/datasette/static/app.css
 */
+
+
+/* Light and dark theme */
+
+
 :root {
-    --black: rgb(25 26 34);
-    --black-alt: rgb(25 26 34);
-    --white: rgb(238 238 245);
+    /* light theme */
+    --bg-color: rgb(25 26 34);
+    --bg-color-alt: rgb(25 26 34);
+    --text: rgb(238 238 245);
     --primary: rgb(132 143 247);
     --on-surface: rgb(181 188 206);
 }
+
+@media (prefers-color-scheme: light) {
+:root {
+    /* dark theme */
+    --bg-color: rgb(255 255 255);
+    --bg-color-alt: rgb(235 235 235);
+    --text: rgb(25 26 34);
+    --primary: rgb(93, 108, 246);
+    --on-surface: rgb(49 67 78);
+}
+}
+
+
 @supports (font-variation-settings: normal) {
-  :root { font-family: 'Inter var', sans-serif; }
+    :root {
+        font-family: 'Inter var', sans-serif;
+    }
 }
 
 header {
-    background-color: var(--black);
+    background-color: var(--bg-color);
     color: var(--on-surface);
     font-family: 'Inter', sans-serif;
     border-bottom: 1px dashed var(--on-surface);
@@ -23,12 +43,13 @@ header {
 
 body {
     /* : 10px; */
-    background-color: var(--black);
+    background-color: var(--bg-color);
     color: var(--on-surface);
     font-family: 'Inter', sans-serif;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: disc;
     margin-left: 16px;
 }
@@ -43,19 +64,20 @@ pre {
 }
 
 span,
+a,
 p,
 h1,
 h2,
 h3,
 h4,
 h5 {
-    color: var(--white);
+    color: var(--text);
 }
 
 a:visited {
-    color: var(--white);
+    color: var(--text);
 }
 
-a:link {
+header a:link, header a:visited, header a:hover, header a:focus, header a:active, header button.button-as-link, a:link {
     color: var(--primary);
 }
