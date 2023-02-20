@@ -6,6 +6,9 @@ from typing import Any
 import glob
 from sqlite_utils import Database
 import click
+import markdown
+from bs4 import BeautifulSoup
+
 
 def build_db_from_directory(directory: str, database: str, table: str) -> None:
     filenames = glob.glob(f"{directory}/*.md")
@@ -15,16 +18,22 @@ def build_db_from_directory(directory: str, database: str, table: str) -> None:
         with open(filename) as fh:
             contents = fh.read()
 
-        # Escape tick marks ` because they're use in the javascript rendering
-        contents = contents.replace("`", "\\`")
+        # TODO: clean up with bleach per 
+        # https://github.com/simonw/datasette-render-markdown/blob/75e13878a0c0a936bbf0848a34d5c01d18c1a654/datasette_render_markdown/__init__.py#L49
+        html_body = markdown.markdown(contents, output_format="html5")
 
-        # Naively grab the the title of the post
-        title = contents.split("\n")[0].replace("# ", "").strip()
+        # Find the title of the post by searching for the first h1 tag
+        soup = BeautifulSoup(html_body, "html.parser")
+        title_tag = soup.find("h1")
+        if not title_tag:
+            raise ValueError("Unable to find title")
+        title = title_tag.text
 
         post = {
             "id": i,
             "title": title,
             "body": contents,
+            "html_body": html_body,
         }
 
         posts.append(post)
